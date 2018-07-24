@@ -1,0 +1,27 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: service-discovery
+
+eureka:
+  client:
+    registerWithClient: false # this service is not a client for eureka registry server
+    fetchRegistry: false      # don't fetch the registry information
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+  instance:
+    hostname: localhost
+
+zuul:
+  # service will be mapped under / URL
+  prefix: /
+  routs:
+    item-catalog:
+      path: /item-catalog/**
+      url: http://localhost:8082
+    favorite-item:
+      path: /favorite-item/**
+      url: http://localhost:8083
