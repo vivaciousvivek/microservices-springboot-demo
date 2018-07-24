@@ -26,7 +26,7 @@ public class ItemController {
   }
 
   @GetMapping("/{itemId}")
-  public Item getItem(@RequestParam long itemId) {
+  public Item getItem(@PathVariable long itemId) {
     return itemRepository
         .findById(itemId)
         .orElseThrow(() -> new ResourceNotFoundException("Item", "itemId", itemId));
@@ -38,7 +38,7 @@ public class ItemController {
   }
 
   @PutMapping("/{itemId}")
-  public Item updateItem(@RequestParam long itemId, @RequestBody Item newItem) {
+  public Item updateItem(@PathVariable long itemId, @RequestBody Item newItem) {
     Item item =
         itemRepository
             .findById(itemId)
@@ -50,7 +50,7 @@ public class ItemController {
   }
 
   @DeleteMapping("/{itemId}")
-  public ResponseEntity<?> deleteItem(@RequestParam long itemId) {
+  public ResponseEntity<?> deleteItem(@PathVariable long itemId) {
     Item item =
         itemRepository
             .findById(itemId)

@@ -1,0 +1,17 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: favorite-item
+
+# eureka
+eureka:
+  client:
+    # below 2 are not required, by default these settings are true
+    registerWithEureka: true # this service will register with eureka registry server
+    fetchRegistry: true      # fetch the registry information
+    serviceUrl:
+      defaultZone: http://localhost:8081/eureka/
+  instance:
+    hostname: localhost
